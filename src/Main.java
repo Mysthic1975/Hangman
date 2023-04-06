@@ -43,13 +43,22 @@ public class Main {
                 }
                 if (!correct) {
                     tries[currentPlayer]++;
-                    System.out.println("Falsch! Versuche übrig für Spieler " + players[currentPlayer] + ": " + (6 - tries[currentPlayer]));
+                    System.out.println("Falsch! Versuche übrig für Spieler " + players[currentPlayer] + ": " + (10 - tries[currentPlayer]));
                 }
                 System.out.println(progress);
                 currentPlayer = (currentPlayer + 1) % numPlayers;
             }
             if (allTriesUsed(tries)) {
                 System.out.println("Sie haben verloren!");
+                System.out.println("  _______");
+                System.out.println("  |/");
+                System.out.println("  |     ( )");
+                System.out.println("  |     \\|/");
+                System.out.println("  |      |");
+                System.out.println("  |     / \\");
+                System.out.println("  |");
+                System.out.println("__|________");
+                System.out.println("|          |");
             } else {
                 System.out.println("Sie haben gewonnen!");
             }
@@ -84,7 +93,7 @@ public class Main {
 
     public static boolean allTriesUsed(int[] tries) {
         for (int i = 0; i < tries.length; i++) {
-            if (tries[i] < 6) {
+            if (tries[i] < 10) {
                 return false;
             }
         }
