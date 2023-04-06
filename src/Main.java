@@ -4,8 +4,18 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean playAgain = true;
-        System.out.println("Geben Sie die Anzahl der Spieler ein: ");
-        int numPlayers = scanner.nextInt();
+        int numPlayers = 0;
+        boolean validInput = false;
+        while (!validInput) {
+            System.out.println("Geben Sie die Anzahl der Spieler ein: ");
+            if (scanner.hasNextInt()) {
+                numPlayers = scanner.nextInt();
+                validInput = true;
+            } else {
+                System.out.println("Ungültige Eingabe. Bitte geben Sie eine Zahl ein.");
+                scanner.next();
+            }
+        }
         String[] players = new String[numPlayers];
         for (int i = 0; i < numPlayers; i++) {
             System.out.println("Geben Sie den Namen von Spieler " + (i + 1) + " ein: ");
@@ -106,7 +116,8 @@ public class Main {
         return true;
     }
 
-    public static void printHangman(int numWrongGuesses) {
+    public static void printHangman(int numWrongGuesses
+    ) {
         if (numWrongGuesses > 3) {
             System.out.println("  +---+");
             System.out.println("  |   |");
