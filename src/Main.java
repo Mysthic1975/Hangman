@@ -4,14 +4,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean playAgain = true;
+        System.out.println("Geben Sie die Anzahl der Spieler ein: ");
+        int numPlayers = scanner.nextInt();
+        String[] players = new String[numPlayers];
+        for (int i = 0; i < numPlayers; i++) {
+            System.out.println("Geben Sie den Namen von Spieler " + (i + 1) + " ein: ");
+            players[i] = scanner.next();
+        }
         while (playAgain) {
-            System.out.println("Geben Sie die Anzahl der Spieler ein: ");
-            int numPlayers = scanner.nextInt();
-            String[] players = new String[numPlayers];
-            for (int i = 0; i < numPlayers; i++) {
-                System.out.println("Geben Sie den Namen von Spieler " + (i + 1) + " ein: ");
-                players[i] = scanner.next();
-            }
             System.out.println("Geben Sie ein Wort ein: ");
             String word = scanner.next();
             while (!isAlpha(word)) {
