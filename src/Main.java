@@ -27,6 +27,8 @@ public class Main {
             }
             int[] tries = new int[numPlayers];
             int currentPlayer = 0;
+            char[] wrongGuesses = new char[26];
+            int numWrongGuesses = 0;
             while (!isSame(letters, progress) && !allTriesUsed(tries)) {
                 System.out.println("Spieler " + players[currentPlayer] + ", erraten Sie einen Buchstaben: ");
                 char guess = scanner.next().charAt(0);
@@ -43,22 +45,20 @@ public class Main {
                 }
                 if (!correct) {
                     tries[currentPlayer]++;
+                    wrongGuesses[numWrongGuesses] = guess;
+                    numWrongGuesses++;
                     System.out.println("Falsch! Versuche übrig für Spieler " + players[currentPlayer] + ": " + (10 - tries[currentPlayer]));
                 }
+                System.out.print("Falsche Vermutungen: ");
+                for (int i = 0; i < numWrongGuesses; i++) {
+                    System.out.print(wrongGuesses[i] + " ");
+                }
+                System.out.println();
                 System.out.println(progress);
                 currentPlayer = (currentPlayer + 1) % numPlayers;
             }
             if (allTriesUsed(tries)) {
                 System.out.println("Sie haben verloren!");
-                System.out.println("  _______");
-                System.out.println("  |/");
-                System.out.println("  |     ( )");
-                System.out.println("  |     \\|/");
-                System.out.println("  |      |");
-                System.out.println("  |     / \\");
-                System.out.println("  |");
-                System.out.println("__|________");
-                System.out.println("|          |");
             } else {
                 System.out.println("Sie haben gewonnen!");
             }
