@@ -9,7 +9,12 @@ public class Main {
         String[] players = new String[numPlayers];
         for (int i = 0; i < numPlayers; i++) {
             System.out.println("Geben Sie den Namen von Spieler " + (i + 1) + " ein: ");
-            players[i] = scanner.next();
+            String name = scanner.next();
+            while (!isAlpha(name)) {
+                System.out.println("Nur Buchstaben sind gültig. Bitte geben Sie den Namen von Spieler " + (i + 1) + " ein: ");
+                name = scanner.next();
+            }
+            players[i] = name;
         }
         while (playAgain) {
             System.out.println("Geben Sie ein Wort ein: ");
@@ -54,6 +59,7 @@ public class Main {
                     System.out.print(wrongGuesses[i] + " ");
                 }
                 System.out.println();
+                printHangman(numWrongGuesses);
                 System.out.println(progress);
                 currentPlayer = (currentPlayer + 1) % numPlayers;
             }
@@ -98,5 +104,47 @@ public class Main {
             }
         }
         return true;
+    }
+
+    public static void printHangman(int numWrongGuesses) {
+        if (numWrongGuesses > 3) {
+            System.out.println("  +---+");
+            System.out.println("  |   |");
+        } else {
+            System.out.println();
+            System.out.println();
+        }
+        if (numWrongGuesses > 2) {
+            System.out.println("  O   |");
+        } else {
+            System.out.println("      |");
+        }
+        if (numWrongGuesses > 1) {
+            System.out.print(" /");
+            if (numWrongGuesses > 0) {
+                System.out.print("|");
+            }
+            if (numWrongGuesses > 7) {
+                System.out.println("\\  |");
+            } else {
+                System.out.println("   |");
+            }
+        } else {
+            System.out.println("      |");
+        }
+        if (numWrongGuesses > 6) {
+            System.out.println(" / \\  |");
+        } else if (numWrongGuesses > 5) {
+            System.out.println(" /    |");
+        } else {
+            System.out.println("      |");
+        }
+        if (numWrongGuesses > 4) {
+            System.out.println("      |");
+            System.out.println("=========");
+        } else {
+            System.out.println();
+            System.out.println();
+        }
     }
 }
